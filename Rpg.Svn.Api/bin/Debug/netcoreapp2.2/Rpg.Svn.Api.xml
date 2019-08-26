@@ -1,0 +1,40 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Rpg.Svn.Api</name>
+    </assembly>
+    <members>
+        <member name="M:Rpg.Svn.Api.Middleware.ErrorHandlingMiddleware.InvokeAsync(Microsoft.AspNetCore.Http.HttpContext)">
+            <summary>
+            Invoke Method, to validate requisition errors
+            </summary>
+            <param name="context"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Rpg.Svn.Api.MySettings">
+            <summary>
+            Class to use data from appsettings.json "Settings" field
+            </summary>
+        </member>
+        <member name="P:Rpg.Svn.Api.MySettings.BlipBotSettings">
+            <summary>
+            BLiP's bot identifier and access key
+            </summary>
+        </member>
+        <member name="P:Rpg.Svn.Api.BlipBotSettings.Identifier">
+            <summary>
+            BLiP's bot identifier
+            </summary>
+        </member>
+        <member name="P:Rpg.Svn.Api.BlipBotSettings.AccessKey">
+            <summary>
+            BLiP's bot access key
+            </summary>
+        </member>
+        <member name="P:Rpg.Svn.Api.BlipBotSettings.Authorization">
+            <summary>
+            BLiP's bot Authorization Key
+            </summary>
+        </member>
+    </members>
+</doc>

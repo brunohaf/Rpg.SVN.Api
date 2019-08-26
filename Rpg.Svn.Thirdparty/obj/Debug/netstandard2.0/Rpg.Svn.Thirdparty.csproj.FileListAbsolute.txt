@@ -1,0 +1,8 @@
+C:\Users\bruno\Desktop\Rpg.SVN.Api\Rpg.Svn.Thirdparty\bin\Debug\netstandard2.0\Rpg.Svn.Thirdparty.deps.json
+C:\Users\bruno\Desktop\Rpg.SVN.Api\Rpg.Svn.Thirdparty\bin\Debug\netstandard2.0\Rpg.Svn.Thirdparty.dll
+C:\Users\bruno\Desktop\Rpg.SVN.Api\Rpg.Svn.Thirdparty\bin\Debug\netstandard2.0\Rpg.Svn.Thirdparty.pdb
+C:\Users\bruno\Desktop\Rpg.SVN.Api\Rpg.Svn.Thirdparty\obj\Debug\netstandard2.0\Rpg.Svn.Thirdparty.csproj.CoreCompileInputs.cache
+C:\Users\bruno\Desktop\Rpg.SVN.Api\Rpg.Svn.Thirdparty\obj\Debug\netstandard2.0\Rpg.Svn.Thirdparty.AssemblyInfoInputs.cache
+C:\Users\bruno\Desktop\Rpg.SVN.Api\Rpg.Svn.Thirdparty\obj\Debug\netstandard2.0\Rpg.Svn.Thirdparty.AssemblyInfo.cs
+C:\Users\bruno\Desktop\Rpg.SVN.Api\Rpg.Svn.Thirdparty\obj\Debug\netstandard2.0\Rpg.Svn.Thirdparty.dll
+C:\Users\bruno\Desktop\Rpg.SVN.Api\Rpg.Svn.Thirdparty\obj\Debug\netstandard2.0\Rpg.Svn.Thirdparty.pdb

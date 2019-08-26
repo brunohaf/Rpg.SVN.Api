@@ -48,7 +48,15 @@ namespace Rpg.Svn.Api
             services.AddSingleton(settings);
             services.AddSingleton(settings.BlipBotSettings);
 
-            // SERILOG settings
+            //// SERILOG settings
+            //services.AddSingleton<ILogger>(new LoggerConfiguration()
+            //         .ReadFrom.Configuration(Configuration)
+            //         .Enrich.WithMachineName()
+            //         .Enrich.WithProperty(APPLICATION_KEY, Constants.PROJECT_NAME)
+            //         .Enrich.WithExceptionDetails()
+            //         .CreateLogger());
+
+            //SERILOG settings
             services.AddSingleton<ILogger>(new LoggerConfiguration()
                      .ReadFrom.Configuration(Configuration)
                      .Enrich.WithMachineName()

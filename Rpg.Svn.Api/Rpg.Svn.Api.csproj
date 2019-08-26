@@ -2,14 +2,15 @@
 
   <PropertyGroup>
     <TargetFramework>netcoreapp2.2</TargetFramework>
+  <GenerateProgramFile>false</GenerateProgramFile>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
-    <DocumentationFile>bin\Debug\netcoreapp2.2\Blip.Api.Template.xml</DocumentationFile>
+    <DocumentationFile>bin\Debug\netcoreapp2.2\Rpg.Svn.Api.xml</DocumentationFile>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
-    <DocumentationFile>bin\Release\netcoreapp2.2\Blip.Api.Template.xml</DocumentationFile>
+    <DocumentationFile>bin\Release\netcoreapp2.2\Rpg.Svn.Api.xml</DocumentationFile>
   </PropertyGroup>
 
   <ItemGroup>
@@ -24,7 +25,8 @@
     <PackageReference Include="Blip.HttpClient" Version="2.4.0" />
     <PackageReference Include="Lime.Protocol" Version="0.8.53-beta" />
     <PackageReference Include="Lime.Protocol.Serialization" Version="0.7.278" />
-    <PackageReference Include="Microsoft.AspNetCore.All" Version="2.2.0" />
+    <PackageReference Include="Microsoft.AspNetCore.All" />
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.2.0" />
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.1.0" />
     <PackageReference Include="Newtonsoft.Json" Version="11.0.2" />
     <PackageReference Include="RestEase" Version="1.4.7" />
@@ -44,6 +46,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Rpg.Svn.Api.Thirdparty\Rpg.Svn.Thirdparty.csproj" />
+    <ProjectReference Include="..\Rpg.Svn.Thirdparty\Rpg.Svn.Thirdparty.csproj" />
   </ItemGroup>
 </Project>
