@@ -1,5 +1,5 @@
-﻿using Blip.Api.Template.Middleware;
-using Blip.Api.Template.Models;
+﻿using Rpg.Svn.Api.Middleware;
+using Rpg.Svn.Api.Models;
 using Blip.HttpClient.Extensions;
 using Lime.Protocol.Serialization.Newtonsoft;
 using Microsoft.AspNetCore.Builder;

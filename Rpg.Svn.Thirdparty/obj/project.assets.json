@@ -186,11 +186,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\bruno\\Desktop\\Rpg.SVN.Api\\Blip.Api.Template.Services\\Rpg.Svn.Thirdparty.csproj",
+      "projectUniqueName": "C:\\Users\\bruno\\Desktop\\Rpg.SVN.Api\\Rpg.Svn.Thirdparty\\Rpg.Svn.Thirdparty.csproj",
       "projectName": "Rpg.Svn.Thirdparty",
-      "projectPath": "C:\\Users\\bruno\\Desktop\\Rpg.SVN.Api\\Blip.Api.Template.Services\\Rpg.Svn.Thirdparty.csproj",
+      "projectPath": "C:\\Users\\bruno\\Desktop\\Rpg.SVN.Api\\Rpg.Svn.Thirdparty\\Rpg.Svn.Thirdparty.csproj",
       "packagesPath": "C:\\Users\\bruno\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\bruno\\Desktop\\Rpg.SVN.Api\\Blip.Api.Template.Services\\obj\\",
+      "outputPath": "C:\\Users\\bruno\\Desktop\\Rpg.SVN.Api\\Rpg.Svn.Thirdparty\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Microsoft\\Xamarin\\NuGet\\",
