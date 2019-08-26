@@ -1,0 +1,112 @@
+{
+  "format": 1,
+  "restore": {
+    "C:\\Users\\bruno\\Desktop\\Rpg.SVN.Api\\Blip.Api.Template\\Blip.Api.Template.csproj": {}
+  },
+  "projects": {
+    "C:\\Users\\bruno\\Desktop\\Rpg.SVN.Api\\Blip.Api.Template.Services\\Blip.Api.Template.Services.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\bruno\\Desktop\\Rpg.SVN.Api\\Blip.Api.Template.Services\\Blip.Api.Template.Services.csproj",
+        "projectName": "Blip.Api.Template.Services",
+        "projectPath": "C:\\Users\\bruno\\Desktop\\Rpg.SVN.Api\\Blip.Api.Template.Services\\Blip.Api.Template.Services.csproj",
+        "packagesPath": "C:\\Users\\bruno\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\bruno\\Desktop\\Rpg.SVN.Api\\Blip.Api.Template.Services\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Microsoft\\Xamarin\\NuGet\\",
+          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\bruno\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "netstandard2.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "netstandard2.0": {
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "netstandard2.0": {
+          "dependencies": {
+            "NETStandard.Library": {
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[2.0.3, )",
+              "autoReferenced": true
+            }
+          },
+          "imports": [
+            "net461"
+          ],
+          "assetTargetFallback": true,
+          "warn": true
+        }
+      }
+    },
+    "C:\\Users\\bruno\\Desktop\\Rpg.SVN.Api\\Blip.Api.Template\\Blip.Api.Template.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\bruno\\Desktop\\Rpg.SVN.Api\\Blip.Api.Template\\Blip.Api.Template.csproj",
+        "projectName": "Blip.Api.Template",
+        "projectPath": "C:\\Users\\bruno\\Desktop\\Rpg.SVN.Api\\Blip.Api.Template\\Blip.Api.Template.csproj",
+        "packagesPath": "C:\\Users\\bruno\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\bruno\\Desktop\\Rpg.SVN.Api\\Blip.Api.Template\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Microsoft\\Xamarin\\NuGet\\",
+          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\bruno\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "netcoreapp2.2"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "netcoreapp2.2": {
+            "projectReferences": {
+              "C:\\Users\\bruno\\Desktop\\Rpg.SVN.Api\\Blip.Api.Template.Services\\Blip.Api.Template.Services.csproj": {
+                "projectPath": "C:\\Users\\bruno\\Desktop\\Rpg.SVN.Api\\Blip.Api.Template.Services\\Blip.Api.Template.Services.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "netcoreapp2.2": {
+          "imports": [
+            "net461"
+          ],
+          "assetTargetFallback": true,
+          "warn": true
+        }
+      }
+    }
+  }
+}
