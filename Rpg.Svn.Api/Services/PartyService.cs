@@ -18,7 +18,7 @@ namespace Rpg.Svn.Api.Services
         public CharacterInfoResponse GetCharacterInfo()
         {
 
-            return _partyInfo.Noon;
+            return _partyInfo.Maegor;
         }
     }
 }
