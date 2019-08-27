@@ -3,17 +3,31 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using Rpg.Svn.Api.Interfaces;
+using Rpg.Svn.Api.Models;
 
 namespace Rpg.Svn.Api.Controllers
 {
+
     [Route("api/[controller]")]
-    public class ValuesController : Controller
+    public class PartyController : Controller
     {
-        // GET api/values
-        [HttpGet]
-        public IEnumerable<string> Get()
+
+        private readonly IPartyService _partyService;
+
+
+        public PartyController(IPartyService partyService)
         {
-            return new string[] { "value1", "value2" };
+            _partyService = partyService;
+        }
+
+
+        // GET api/party
+        [HttpGet]
+        public ActionResult<CharacterInfoResponse> GetCharacterInfo()
+        {
+            var response =  _partyService.GetCharacterInfo();
+            return Ok(response);
         }
 
         // GET api/values/5

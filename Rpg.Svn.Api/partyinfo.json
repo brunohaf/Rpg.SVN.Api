@@ -1,0 +1,10 @@
+{
+  "Maegor": {
+    "Class": "Rogue",
+    "Archetype": "Swashbuckler"
+  },
+  "Noon": {
+    "Class": "Ranger",
+    "Archetype": "Skirmisher"
+  }
+}

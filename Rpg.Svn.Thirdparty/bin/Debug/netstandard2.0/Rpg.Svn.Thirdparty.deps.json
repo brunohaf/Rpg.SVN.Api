@@ -1,7 +1,7 @@
 {
   "runtimeTarget": {
     "name": ".NETStandard,Version=v2.0/",
-    "signature": "b7f912a9d3d80162743bcd5213af53face70d9ce"
+    "signature": "e2d0bd106fd4055a0e496c555ebb62836f658446"
   },
   "compilationOptions": {},
   "targets": {
@@ -9,11 +9,20 @@
     ".NETStandard,Version=v2.0/": {
       "Rpg.Svn.Thirdparty/1.0.0": {
         "dependencies": {
+          "FileReader": "1.0.0",
           "Microsoft.NET.Test.Sdk": "16.2.0",
           "NETStandard.Library": "2.0.3"
         },
         "runtime": {
           "Rpg.Svn.Thirdparty.dll": {}
+        }
+      },
+      "FileReader/1.0.0": {
+        "runtime": {
+          "lib/net452/FileReader.dll": {
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "1.0.0.0"
+          }
         }
       },
       "Microsoft.NET.Test.Sdk/16.2.0": {},
@@ -30,6 +39,13 @@
       "type": "project",
       "serviceable": false,
       "sha512": ""
+    },
+    "FileReader/1.0.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-m4/YUbDsUA3CzbzkUStuOEfW2zV8Za3+F0YklXzKt8NbMzZTgNYBb//il4pQI3mGmxKRV+VnO2y2xT/V7p5ifA==",
+      "path": "filereader/1.0.0",
+      "hashPath": "filereader.1.0.0.nupkg.sha512"
     },
     "Microsoft.NET.Test.Sdk/16.2.0": {
       "type": "package",

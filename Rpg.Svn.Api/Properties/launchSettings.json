@@ -11,12 +11,12 @@
     "IIS Express": {
       "commandName": "IISExpress",
       "launchBrowser": true,
-      "launchUrl": "api/values",
+      "launchUrl": "",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
       }
     },
-    "Blip.Api.Template": {
+    "Rpg.Svn.Api": {
       "commandName": "Project",
       "launchBrowser": true,
       "launchUrl": "api/values",

@@ -11,6 +11,16 @@
             <param name="context"></param>
             <returns></returns>
         </member>
+        <member name="P:Rpg.Svn.Api.Models.PartyInfo.Noon">
+            <summary>
+            Noon's info
+            </summary>
+        </member>
+        <member name="P:Rpg.Svn.Api.Models.PartyInfo.Maegor">
+            <summary>
+            Maegor's info
+            </summary>
+        </member>
         <member name="T:Rpg.Svn.Api.MySettings">
             <summary>
             Class to use data from appsettings.json "Settings" field
@@ -35,6 +45,14 @@
             <summary>
             BLiP's bot Authorization Key
             </summary>
+        </member>
+        <member name="M:Rpg.Svn.Api.Services.FileReaderService.ReadJson``1(System.String)">
+            <summary>
+            Reads a Json file into <typeparamref name="T"/> class
+            </summary>
+            <typeparam name="T">Type to deserialize into</typeparam>
+            <param name="path">Path to the .json file</param>
+            <returns></returns>
         </member>
     </members>
 </doc>
