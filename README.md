@@ -1,6 +1,6 @@
 ﻿# Guidelines on what to do:
  1. Get main char's data to populate partyinfo.json.
- 2. Create attribs for CharacterInfo.
+ 2. Create attribs for CharacterInfo.(Name,gender,*LEVEL*(lv up endpoint),alignment, rumours, war fame)
  3. Create SVN smalltalks utilities (SVNRPG SmallTalks).
  4. Treat Exceptions.
 
