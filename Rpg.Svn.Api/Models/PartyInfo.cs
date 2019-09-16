@@ -1,8 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 
 namespace Rpg.Svn.Api.Models
 {
@@ -19,6 +17,27 @@ namespace Rpg.Svn.Api.Models
         /// </summary>
         [JsonProperty("Maegor")]
         public CharacterInfoResponse Maegor { get; set; }
+
+        public IEnumerable<CharacterInfoResponse> ToList()
+        {
+            var charList = new List<CharacterInfoResponse>();
+            charList.Add(Maegor);
+            charList.Add(Noon);
+
+            return charList;
+        }
+        public CharacterInfoResponse GetCharacterInfoById(int id) 
+        {
+            var charList = ToList();
+            foreach(var character in charList)
+            {
+                if (character.Id.Equals(id))
+                {
+                    return character;
+                }
+            }
+            return null;
+        }
     }
 
 }

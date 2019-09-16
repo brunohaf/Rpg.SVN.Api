@@ -229,26 +229,23 @@
   },
   "packageFolders": {
     "C:\\Users\\bruno\\.nuget\\packages\\": {},
-    "C:\\Microsoft\\Xamarin\\NuGet\\": {},
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\bruno\\Desktop\\Rpg.SVN.Api\\Rpg.Svn.Thirdparty\\Rpg.Svn.Thirdparty.csproj",
+      "projectUniqueName": "D:\\Users\\bruno\\source\\repos\\Rpg.SVN.Api\\Rpg.Svn.Thirdparty\\Rpg.Svn.Thirdparty.csproj",
       "projectName": "Rpg.Svn.Thirdparty",
-      "projectPath": "C:\\Users\\bruno\\Desktop\\Rpg.SVN.Api\\Rpg.Svn.Thirdparty\\Rpg.Svn.Thirdparty.csproj",
+      "projectPath": "D:\\Users\\bruno\\source\\repos\\Rpg.SVN.Api\\Rpg.Svn.Thirdparty\\Rpg.Svn.Thirdparty.csproj",
       "packagesPath": "C:\\Users\\bruno\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\bruno\\Desktop\\Rpg.SVN.Api\\Rpg.Svn.Thirdparty\\obj\\",
+      "outputPath": "D:\\Users\\bruno\\source\\repos\\Rpg.SVN.Api\\Rpg.Svn.Thirdparty\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
-        "C:\\Microsoft\\Xamarin\\NuGet\\",
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
       ],
       "configFilePaths": [
         "C:\\Users\\bruno\\AppData\\Roaming\\NuGet\\NuGet.Config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
         "netstandard2.0"
@@ -299,7 +296,7 @@
       "code": "NU1701",
       "level": "Warning",
       "warningLevel": 1,
-      "message": "Package 'FileReader 1.0.0' was restored using '.NETFramework,Version=v4.6.1' instead of the project target framework '.NETStandard,Version=v2.0'. This package may not be fully compatible with your project.",
+      "message": "O pacote 'FileReader 1.0.0' foi restaurado usando '.NETFramework,Version=v4.6.1' em vez da estrutura de destino do projeto '.NETStandard,Version=v2.0'. Esse pacote pode não ser totalmente compatível com o seu projeto.",
       "libraryId": "FileReader",
       "targetGraphs": [
         ".NETStandard,Version=v2.0"

@@ -2,7 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using System.Web;
 using Microsoft.AspNetCore.Mvc;
+using Rpg.Svn.Api.Exceptions;
 using Rpg.Svn.Api.Interfaces;
 using Rpg.Svn.Api.Models;
 
@@ -24,17 +26,20 @@ namespace Rpg.Svn.Api.Controllers
 
         // GET api/party
         [HttpGet]
-        public ActionResult<CharacterInfoResponse> GetCharacterInfo()
+        public ActionResult<CharacterInfoResponse> GetCharacterInfo([FromHeader] string authkey, [FromHeader]string character)
         {
-            var response =  _partyService.GetCharacterInfo();
+            var response = _partyService.GetCharacterInfo(character);
             return Ok(response);
+           
         }
 
         // GET api/values/5
-        [HttpGet("{id}")]
-        public string Get(int id)
+        [HttpGet("Uri/{url}")]
+        public ActionResult<string> Get(string url)
         {
-            return "value";
+            var uriBuilder = new UriBuilder(url);
+            var response = _partyService.UriTest(uriBuilder.Uri);
+            return Ok(HttpUtility.UrlDecode(response.ToString()));
         }
 
         // POST api/values

@@ -8,6 +8,7 @@ namespace Rpg.Svn.Api.Interfaces
 {
     public interface IPartyService
     {
-        CharacterInfoResponse GetCharacterInfo();
+        CharacterInfoResponse GetCharacterInfo(string character);
+        Uri UriTest(Uri url);
     }
 }
