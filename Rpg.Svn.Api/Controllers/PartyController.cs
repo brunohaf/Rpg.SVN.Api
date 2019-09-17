@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 using Rpg.Svn.Api.Exceptions;
 using Rpg.Svn.Api.Interfaces;
 using Rpg.Svn.Api.Models;
+using Rpg.Svn.Thirdparty.Facades;
 
 namespace Rpg.Svn.Api.Controllers
 {
@@ -16,11 +17,13 @@ namespace Rpg.Svn.Api.Controllers
     {
 
         private readonly IPartyService _partyService;
+        private readonly ISpellService _spellService;
 
 
-        public PartyController(IPartyService partyService)
+        public PartyController(IPartyService partyService, ISpellService spellService)
         {
             _partyService = partyService;
+            _spellService = spellService;
         }
 
 
@@ -34,12 +37,11 @@ namespace Rpg.Svn.Api.Controllers
         }
 
         // GET api/values/5
-        [HttpGet("Uri/{url}")]
-        public ActionResult<string> Get(string url)
+        [HttpGet("Spells/")]
+        public ActionResult<SpellResponse> GetSpells([FromHeader] string page)
         {
-            var uriBuilder = new UriBuilder(url);
-            var response = _partyService.UriTest(uriBuilder.Uri);
-            return Ok(HttpUtility.UrlDecode(response.ToString()));
+            var response = _spellService.GetSpellsAsync(page);
+            return Ok(response);
         }
 
         // POST api/values

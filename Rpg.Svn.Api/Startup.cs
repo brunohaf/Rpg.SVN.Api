@@ -69,6 +69,7 @@ namespace Rpg.Svn.Api
 
             // Project specific Services
             services.AddSingleton<IPartyService, PartyService>();
+            services.AddSingleton<ISpellService, SpellService>();
             services.AddSingleton<IOpen5eService>(provider =>
             {
                 var logger = provider.GetService<ILogger>();
