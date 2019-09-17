@@ -70,15 +70,6 @@ namespace Rpg.Svn.Thirdparty.Facades
 
     public class SpellResponse
     {
-        [JsonProperty("count")]
-        public int Count { get; set; }
-
-        [JsonProperty("next")]
-        public object Next { get; set; }
-
-        [JsonProperty("previous")]
-        public string Previous { get; set; }
-
         [JsonProperty("results")]
         public List<Spell> SpellList { get; set; }
     }

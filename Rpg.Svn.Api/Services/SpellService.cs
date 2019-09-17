@@ -18,12 +18,12 @@ namespace Rpg.Svn.Api.Services
         {
             _api = apiOpen5e;
         }
-        public async Task<SpellResponse> GetSpellsAsync(string page)
+        public async Task<IEnumerable<Spell>> GetSpellListAsync(string page)
         {
             try
             {
                 var teste = await _api.GetSpellsAsync(page);
-                return teste;
+                return teste.SpellList;
             }
             catch(ApiException e)
             {
