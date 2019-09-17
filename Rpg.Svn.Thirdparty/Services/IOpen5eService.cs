@@ -15,6 +15,9 @@ namespace Rpg.Svn.Thirdparty.Services
     {
         [Get("/spells")]
         Task<SpellResponse> GetSpellsAsync([Query("page")] int page);
+
+        [Get("/monsters")]
+        Task<MonsterResponse> GetMonstersAsync([Query("page")] int page);
     }
 }
 
