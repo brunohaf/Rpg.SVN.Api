@@ -1,0 +1,26 @@
+{
+  "Maegor": {
+    "Name": "Maegor",
+    "Id":  "1",
+    "Class": "Rogue",
+    "Archetype": "Swashbuckler",
+    "ImgUrl": "PLACEHOLDER",
+    "Gender": "male",
+    "Level": "4",
+    "Fame": "Notorious",
+    "Bio": "Maegor e um blabla, de blabla.",
+    "UthalCatchPhrase": "Porra, esse maluco cai toda hora."
+  },
+  "Noon": {
+    "Name": "Noon",
+    "Id": "2",
+    "Class": "Ranger",
+    "Archetype": "Skirmisher",
+    "ImgUrl": "PLACEHOLDER",
+    "Gender": "male",
+    "Level": "4",
+    "Fame": "Icognito",
+    "Bio": "Noon e um blabla, de blabla.",
+    "UthalCatchPhrase": "Gatinho rapeidinho."
+  }
+}

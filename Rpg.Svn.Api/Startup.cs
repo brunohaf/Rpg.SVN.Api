@@ -6,12 +6,15 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Newtonsoft;
 using Serilog;
 using Serilog.Exceptions;
 using Swashbuckle.AspNetCore.Swagger;
 using System;
 using System.IO;
 using System.Reflection;
+using Rpg.Svn.Api.Services;
+using Rpg.Svn.Api.Interfaces;
 
 namespace Rpg.Svn.Api
 {
@@ -48,13 +51,9 @@ namespace Rpg.Svn.Api
             services.AddSingleton(settings);
             services.AddSingleton(settings.BlipBotSettings);
 
-            //// SERILOG settings
-            //services.AddSingleton<ILogger>(new LoggerConfiguration()
-            //         .ReadFrom.Configuration(Configuration)
-            //         .Enrich.WithMachineName()
-            //         .Enrich.WithProperty(APPLICATION_KEY, Constants.PROJECT_NAME)
-            //         .Enrich.WithExceptionDetails()
-            //         .CreateLogger());
+            // Adding PartyInfo Json
+            var partyinfo = FileReaderService.ReadJson<PartyInfo>("partyinfo.json");
+            services.AddSingleton(partyinfo);
 
             //SERILOG settings
             services.AddSingleton<ILogger>(new LoggerConfiguration()
@@ -68,6 +67,7 @@ namespace Rpg.Svn.Api
             services.DefaultRegister(settings.BlipBotSettings.Authorization);
 
             // Project specific Services
+            services.AddSingleton<IPartyService, PartyService>();
 
             // Swagger
             services.AddSwaggerGen(c =>

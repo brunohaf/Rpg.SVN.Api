@@ -1,26 +1,24 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\bruno\\Desktop\\Rpg.SVN.Api\\Rpg.Svn.Thirdparty\\Rpg.Svn.Thirdparty.csproj": {}
+    "D:\\Users\\bruno\\source\\repos\\Rpg.SVN.Api\\Rpg.Svn.Thirdparty\\Rpg.Svn.Thirdparty.csproj": {}
   },
   "projects": {
-    "C:\\Users\\bruno\\Desktop\\Rpg.SVN.Api\\Rpg.Svn.Thirdparty\\Rpg.Svn.Thirdparty.csproj": {
+    "D:\\Users\\bruno\\source\\repos\\Rpg.SVN.Api\\Rpg.Svn.Thirdparty\\Rpg.Svn.Thirdparty.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\bruno\\Desktop\\Rpg.SVN.Api\\Rpg.Svn.Thirdparty\\Rpg.Svn.Thirdparty.csproj",
+        "projectUniqueName": "D:\\Users\\bruno\\source\\repos\\Rpg.SVN.Api\\Rpg.Svn.Thirdparty\\Rpg.Svn.Thirdparty.csproj",
         "projectName": "Rpg.Svn.Thirdparty",
-        "projectPath": "C:\\Users\\bruno\\Desktop\\Rpg.SVN.Api\\Rpg.Svn.Thirdparty\\Rpg.Svn.Thirdparty.csproj",
+        "projectPath": "D:\\Users\\bruno\\source\\repos\\Rpg.SVN.Api\\Rpg.Svn.Thirdparty\\Rpg.Svn.Thirdparty.csproj",
         "packagesPath": "C:\\Users\\bruno\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\bruno\\Desktop\\Rpg.SVN.Api\\Rpg.Svn.Thirdparty\\obj\\",
+        "outputPath": "D:\\Users\\bruno\\source\\repos\\Rpg.SVN.Api\\Rpg.Svn.Thirdparty\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
-          "C:\\Microsoft\\Xamarin\\NuGet\\",
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
         ],
         "configFilePaths": [
           "C:\\Users\\bruno\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
           "netstandard2.0"
@@ -43,6 +41,10 @@
       "frameworks": {
         "netstandard2.0": {
           "dependencies": {
+            "FileReader": {
+              "target": "Package",
+              "version": "[1.0.0, )"
+            },
             "Microsoft.NET.Test.Sdk": {
               "target": "Package",
               "version": "[16.2.0, )"

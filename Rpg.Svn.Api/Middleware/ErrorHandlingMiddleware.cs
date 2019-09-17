@@ -2,6 +2,9 @@
 using System.Net;
 using System.Threading.Tasks;
 using Rpg.Svn.Api.Models;
+using Rpg.Svn.Api.Interfaces;
+using Rpg.Svn.Api.Services;
+using Rpg.Svn.Api.Controllers;
 using Lime.Protocol;
 using Microsoft.AspNetCore.Http;
 using Newtonsoft.Json;
