@@ -15,6 +15,7 @@ using System.IO;
 using System.Reflection;
 using Rpg.Svn.Api.Services;
 using Rpg.Svn.Api.Interfaces;
+using Rpg.Svn.Thirdparty.Services;
 
 namespace Rpg.Svn.Api
 {
@@ -68,6 +69,17 @@ namespace Rpg.Svn.Api
 
             // Project specific Services
             services.AddSingleton<IPartyService, PartyService>();
+            services.AddSingleton<ISpellService, SpellService>();
+            services.AddSingleton<IMonsterService, MonsterService>();
+            services.AddSingleton<IOpen5eService>(provider =>
+            {
+                var logger = provider.GetService<ILogger>();
+                // Partner API
+                var clientBuilder = new RestingLogger.Builders.LoggedRestClientBuilder();
+                var httpClient = clientBuilder.BuildLoggedClient<IOpen5eService>(settings.ThirdPartySettings.Open5eBaseUrl, logger);
+                return httpClient;
+            }
+      );
 
             // Swagger
             services.AddSwaggerGen(c =>

@@ -12,6 +12,8 @@ namespace Rpg.Svn.Api
         /// </summary>
         [JsonProperty("BlipBotSettings")]
         public BlipBotSettings BlipBotSettings { get; set; }
+        [JsonProperty("ThirdPartySettings")]
+        public ThirdPartySettings ThirdPartySettings { get; set; }
     }
 
     public class BlipBotSettings
@@ -33,5 +35,10 @@ namespace Rpg.Svn.Api
         /// </summary>
         [JsonProperty("Authorization")]
         public string Authorization { get; set; }
+    }
+    public class ThirdPartySettings
+    {
+        [JsonProperty("open5eBaseUrl")]
+        public string Open5eBaseUrl { get; set; }
     }
 }
