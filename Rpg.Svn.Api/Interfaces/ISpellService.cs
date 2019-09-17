@@ -8,6 +8,7 @@ namespace Rpg.Svn.Api.Interfaces
 {
     public interface ISpellService
     {
-        Task<IEnumerable<Spell>> GetSpellListAsync(string page);
+        Task<IEnumerable<Spell>> GetSpellListAsync();
+        Task<Spell> GetSpellbyNameAsync(string spellName);
     }
 }

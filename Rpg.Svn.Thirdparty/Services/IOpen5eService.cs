@@ -14,7 +14,7 @@ namespace Rpg.Svn.Thirdparty.Services
     public interface IOpen5eService
     {
         [Get("/spells")]
-        Task<SpellResponse> GetSpellsAsync([Query("page")] string page);
+        Task<SpellResponse> GetSpellsAsync([Query("page")] int page);
     }
 }
 

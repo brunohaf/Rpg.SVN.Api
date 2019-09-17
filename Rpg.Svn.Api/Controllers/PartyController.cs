@@ -38,9 +38,9 @@ namespace Rpg.Svn.Api.Controllers
 
         // GET api/values/5
         [HttpGet("Spells/")]
-        public async Task<IActionResult> GetSpellsAsync([FromHeader] string page)
+        public async Task<IActionResult> GetSpellsAsync([FromHeader] string spellName)
         {
-            return Ok(await _spellService.GetSpellListAsync(page));
+            return Ok(await _spellService.GetSpellbyNameAsync(spellName));
         }
 
         // POST api/values
