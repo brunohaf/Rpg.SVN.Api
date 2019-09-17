@@ -1,13 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using System.Web;
-using Microsoft.AspNetCore.Mvc;
-using Rpg.Svn.Api.Exceptions;
+﻿using Microsoft.AspNetCore.Mvc;
 using Rpg.Svn.Api.Interfaces;
 using Rpg.Svn.Api.Models;
-using Rpg.Svn.Thirdparty.Facades;
 
 namespace Rpg.Svn.Api.Controllers
 {
@@ -17,13 +10,11 @@ namespace Rpg.Svn.Api.Controllers
     {
 
         private readonly IPartyService _partyService;
-        private readonly ISpellService _spellService;
 
 
         public PartyController(IPartyService partyService, ISpellService spellService)
         {
             _partyService = partyService;
-            _spellService = spellService;
         }
 
 
@@ -34,13 +25,6 @@ namespace Rpg.Svn.Api.Controllers
             var response = _partyService.GetCharacterInfo(character);
             return Ok(response);
            
-        }
-
-        // GET api/values/5
-        [HttpGet("Spells/")]
-        public async Task<IActionResult> GetSpellsAsync([FromHeader] string spellName)
-        {
-            return Ok(await _spellService.GetSpellbyNameAsync(spellName));
         }
 
         // POST api/values
