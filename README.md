@@ -3,6 +3,8 @@
  2. Create attribs for CharacterInfo.(Name,gender,*LEVEL*(lv up endpoint),alignment, rumours, war fame)
  3. Create SVN smalltalks utilities (SVNRPG SmallTalks).
  4. Treat Exceptions.
+ 5. Implement Character sheet creation and pdf export
+ 6. Create a crawler to redeem data from roll20 website.
 
 
 ### About the RestAPI
