@@ -5,6 +5,10 @@
  4. Treat Exceptions.
  5. Implement Character sheet creation and pdf export
  6. Create a crawler to redeem data from roll20 website.
+ 7. Create a crawler for d&dBeyond:
+   #### Endpoints:
+    https://www.dndbeyond.com/search?q=giant%20owl&f=monsters&c=monsters search for monsters
+    https://www.dndbeyond.com/monsters/monster get monster
 
 
 ### About the RestAPI
