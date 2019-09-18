@@ -7,9 +7,11 @@
  6. Create a crawler to redeem data from roll20 website.
  7. Create a crawler for d&dBeyond:
    #### Endpoints:
-    https://www.dndbeyond.com/search?q=giant%20owl&f=monsters&c=monsters search for monsters
-    https://www.dndbeyond.com/monsters/monster get monster
+    Search: https://www.dndbeyond.com/search?q=giant%20owl&f=monsters&c=monsters
+    Get Monster: https://www.dndbeyond.com/monsters/{{monster}}
 
+#### Sources:
+https://ironsoftware.com/csharp/webscraper/tutorials/webscraping-in-c-sharp/
 
 ### About the RestAPI
 1. Populate `UserContext.cs` and `MySettings.cs` with whatever you need.
