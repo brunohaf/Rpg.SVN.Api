@@ -25,10 +25,13 @@ namespace Rpg.Svn.Api
         private const string API_VERSION = "v1";
         private const string SETTINGS_SECTION = "Settings";
         private const string APPLICATION_KEY = "Application";
+        private readonly ScraperService _scraperService;
 
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
+            _scraperService = new ScraperService();
+            _scraperService.Init();
         }
 
         public IConfiguration Configuration { get; }

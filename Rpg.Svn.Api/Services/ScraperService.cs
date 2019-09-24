@@ -3,71 +3,42 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Net;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
+using OpenQA.Selenium;
+using OpenQA.Selenium.Chrome;
 using Rpg.Svn.Api.Interfaces;
 
 namespace Rpg.Svn.Api.Services
 {
     public class ScraperService : IScraperService
     {
-        public void Test(string login, string senha)
+
+        private IWebDriver _webDriver;
+        public void Init()
         {
-            var _cookieContainer = new CookieContainer();
-
-            var request = (HttpWebRequest)HttpWebRequest.Create("https://app.roll20.net/sessions/new/");
-            request.CookieContainer = _cookieContainer;
-            //set the user agent and accept header values, to simulate a real web browser
-            request.UserAgent = "Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/45.0.2454.101 Safari/537.36";
-            request.Accept = "text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8";
-
-
-            //SET AUTOMATIC DECOMPRESSION
-            request.AutomaticDecompression = DecompressionMethods.Deflate | DecompressionMethods.GZip;
-
-            Console.WriteLine("FIRST RESPONSE");
-            Console.WriteLine();
-            using (WebResponse response = request.GetResponse())
-            {
-                using (var sr = new StreamReader(response.GetResponseStream()))
-                {
-                    Console.WriteLine(sr.ReadToEnd());
-                }
-            }
-
-            request = (HttpWebRequest)HttpWebRequest.Create("https://roll20.net/");
-            //set the cookie container object
-            request.CookieContainer = _cookieContainer;
-            request.UserAgent = "Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/45.0.2454.101 Safari/537.36";
-            request.Accept = "text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8";
-
-            //set method POST and content type application/x-www-form-urlencoded
-            request.Method = "POST";
-            request.ContentType = "application/x-www-form-urlencoded";
-
-            //SET AUTOMATIC DECOMPRESSIONa
-            request.AutomaticDecompression = DecompressionMethods.Deflate | DecompressionMethods.GZip;
-
-            //insert your username and password
-            string data = string.Format("username={0}&password={1}", login, senha);
-            byte[] bytes = System.Text.Encoding.UTF8.GetBytes(data);
-
-            request.ContentLength = bytes.Length;
-
-            using (Stream dataStream = request.GetRequestStream())
-            {
-                dataStream.Write(bytes, 0, bytes.Length);
-                dataStream.Close();
-            }
-
-            Console.WriteLine("LOGIN RESPONSE");
-            Console.WriteLine();
-            using (WebResponse response = request.GetResponse())
-            {
-                using (StreamReader sr = new StreamReader(response.GetResponseStream()))
-                {
-                    Console.WriteLine(sr.ReadToEnd());
-                }
-            }
+            var service = ChromeDriverService.CreateDefaultService(driverPath: @"C:\Users\brunof\source\repos\brunohaf\Rpg.SVN.Api\Rpg.Svn.Thirdparty\");
+            service.HideCommandPromptWindow = true;
+            var options = new ChromeOptions();
+            options.AddArguments("headless");
+            _webDriver = new ChromeDriver(service,options);
+            _webDriver.Navigate().GoToUrl("https://www.dndbeyond.com/monsters/red-dragon-wyrmling");
+            
+            _webDriver.Manage().Window.Maximize();
+            Test();
         }
+        public void Test()
+        {
+            var thatList = _webDriver.FindElements(By.ClassName("mon-stat-block__tidbit")).ToList();
+            var dict = new Dictionary<string, string>();
+            foreach (var label in thatList)
+            {
+                dict.Add(label.FindElement(By.ClassName("mon-stat-block__tidbit-label")).Text, label.FindElement(By.ClassName("mon-stat-block__tidbit-data")).Text);
+            }
+
+            var tost = dict;
+
+        }
+
     }
 }
