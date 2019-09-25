@@ -7,6 +7,7 @@ using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
+using Rpg.Svn.Api.Extensions;
 using Rpg.Svn.Api.Interfaces;
 
 namespace Rpg.Svn.Api.Services
@@ -28,17 +29,29 @@ namespace Rpg.Svn.Api.Services
             Test();
         }
         public void Test()
-        {
-            var thatList = _webDriver.FindElements(By.ClassName("mon-stat-block__tidbit")).ToList();
+        {/*
+            var tibitElementList = _webDriver.GetTidbitList();
             var dict = new Dictionary<string, string>();
-            foreach (var label in thatList)
+
+            foreach (var tidbitElement in tibitElementList)
             {
-                dict.Add(label.FindElement(By.ClassName("mon-stat-block__tidbit-label")).Text, label.FindElement(By.ClassName("mon-stat-block__tidbit-data")).Text);
+                var tidbit = tidbitElement.GetTidbitKeyAndValue();
+                dict.Add(tidbit.Key, tidbit.Value);
             }
-
+            var image = _webDriver.FindElements(By.XPath("//div/a/img[@class='monster-image']")).FirstOrDefault();
+            dict.Add("imageUrl", image.GetAttribute("src"));
+            
             var tost = dict;
+            */
+            var monsterElement = _webDriver.FindElement(By.XPath("//div[@class='mon-stat-block']"));
+            var monsterHeader = monsterElement.FindElement(By.XPath("//div/div[@class='mon-stat-block__header']"));
+            var monsterName = monsterElement.GetMonsterName();
+            if (monsterName is null)
+            {
 
+            }
         }
 
     }
+
 }

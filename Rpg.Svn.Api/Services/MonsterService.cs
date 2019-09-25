@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
+using OpenQA.Selenium;
 using RestEase;
 using Rpg.Svn.Api.Interfaces;
 using Rpg.Svn.Thirdparty.Facades;
