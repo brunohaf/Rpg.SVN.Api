@@ -104,7 +104,7 @@ namespace Rpg.Svn.Thirdparty.Facades
         public string Desc { get; set; }
     }
 
-    public class Monster
+    public class Monsterll
     {
         [JsonProperty("name")]
         public string Name { get; set; }
@@ -229,6 +229,6 @@ namespace Rpg.Svn.Thirdparty.Facades
     public class MonsterResponse
     {
         [JsonProperty("results")]
-        public List<Monster> MonsterList { get; set; }
+        public List<Monsterll> MonsterList { get; set; }
     }
 }

@@ -21,11 +21,11 @@ namespace Rpg.Svn.Api.Services
         {
             _api = apiOpen5e;
         }
-        public async Task<IEnumerable<Monster>> GetMonsterListAsync()
+        public async Task<IEnumerable<Monsterll>> GetMonsterListAsync()
         {
             try
             {
-                var fullMonsterList = new List<Monster>();
+                var fullMonsterList = new List<Monsterll>();
                 foreach (var page in Enumerable.Range(SPELL_FIRST_PAGE, SPELL_LAST_PAGE).ToList())
                 {
                     var pagedMonsterList = await _api.GetMonstersAsync(page);
@@ -39,7 +39,7 @@ namespace Rpg.Svn.Api.Services
             }
         }
 
-        public async Task<Monster> GetMonsterbyNameAsync(string monsterName)
+        public async Task<Monsterll> GetMonsterbyNameAsync(string monsterName)
         {
             var fullList = await GetMonsterListAsync();
             return fullList.ToList().Where(s => s.NameIsMatch(monsterName)).FirstOrDefault();

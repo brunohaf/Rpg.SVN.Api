@@ -16,9 +16,7 @@ namespace Rpg.Svn.Api.Extensions
 
         public static IWebElement GetElementByClassName(this IWebElement webElement, string label) => webElement.FindElement(By.ClassName(label));
         public static List<IWebElement> GetElementsListByClass(this IWebDriver webDriver, string label) => webDriver.FindElements(By.ClassName(label)).ToList();
-        public static List<IWebElement> GetTidbitList(this IWebDriver webDriver) => webDriver.FindElements(By.ClassName(TIDBIT_BLOCK)).ToList();
-        public static KeyValuePair<string, string> GetTidbitKeyAndValue(this IWebElement webElement) => new KeyValuePair<string, string>(webElement.GetElementByClassName(TIDBIT_LABEL).Text,
-                                                                                                                                         webElement.GetElementByClassName(TIDBIT_DATA).Text);
+
         public static string GetMonsterName(this IWebElement monsterElement) => monsterElement.FindElement(By.XPath(MONSTER_NAME_XPATH)).Text;
     }
 }
