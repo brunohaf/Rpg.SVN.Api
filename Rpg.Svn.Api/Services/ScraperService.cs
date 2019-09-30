@@ -19,7 +19,7 @@ namespace Rpg.Svn.Api.Services
         private IWebDriver _webDriver;
         public void Init()
         {
-            var service = ChromeDriverService.CreateDefaultService(driverPath: @"D:\Users\bruno\source\repos\Rpg.SVN.Api\Rpg.Svn.Thirdparty\");
+            var service = ChromeDriverService.CreateDefaultService(driverPath: AppDomain.CurrentDomain.BaseDirectory);
             service.HideCommandPromptWindow = true;
             var options = new ChromeOptions();
             options.AddArguments("headless");
