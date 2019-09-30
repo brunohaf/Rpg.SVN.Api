@@ -9,6 +9,7 @@ using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
 using Rpg.Svn.Api.Extensions;
 using Rpg.Svn.Api.Interfaces;
+using Rpg.Svn.Thirdparty.Facades;
 
 namespace Rpg.Svn.Api.Services
 {
@@ -18,14 +19,14 @@ namespace Rpg.Svn.Api.Services
         private IWebDriver _webDriver;
         public void Init()
         {
-            var service = ChromeDriverService.CreateDefaultService(driverPath: @"C:\Users\brunof\source\repos\brunohaf\Rpg.SVN.Api\Rpg.Svn.Thirdparty\");
+            var service = ChromeDriverService.CreateDefaultService(driverPath: @"D:\Users\bruno\source\repos\Rpg.SVN.Api\Rpg.Svn.Thirdparty\");
             service.HideCommandPromptWindow = true;
             var options = new ChromeOptions();
             options.AddArguments("headless");
+            options.Proxy = null;
             _webDriver = new ChromeDriver(service,options);
-            _webDriver.Navigate().GoToUrl("https://www.dndbeyond.com/monsters/red-dragon-wyrmling");
-            
-            _webDriver.Manage().Window.Maximize();
+            _webDriver.Navigate().GoToUrl("https://www.dndbeyond.com/monsters/tarrasque");
+           
             Test();
         }
         public void Test()
@@ -43,10 +44,11 @@ namespace Rpg.Svn.Api.Services
             
             var tost = dict;
             */
-            var monsterElement = _webDriver.FindElement(By.XPath("//div[@class='mon-stat-block']"));
-            var monsterHeader = monsterElement.FindElement(By.XPath("//div/div[@class='mon-stat-block__header']"));
-            var monsterName = monsterElement.GetMonsterName();
-            if (monsterName is null)
+         //var monsterElement = _webDriver.FindElement(By.XPath("//div[@class='mon-stat-block']"));
+         //var monsterHeader = monsterElement.FindElement(By.XPath("//div/div[@class='mon-stat-block__header']"));
+            var monsterElement = new MonsterFactory(_webDriver.FindElement(By.XPath("//div[@class='mon-stat-block']")));
+            var monster = monsterElement.GenerateMonster();
+            if (monster is null)
             {
 
             }

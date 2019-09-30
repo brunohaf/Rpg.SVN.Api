@@ -14,9 +14,20 @@ namespace Rpg.Svn.Api.Extensions
         private const string TIDBIT_BLOCK = "mon-stat-block__tidbit";
         private const string MONSTER_NAME_XPATH = "//div/a[@class='mon-stat-block__name-link']";
 
-        public static IWebElement GetElementByClassName(this IWebElement webElement, string label) => webElement.FindElement(By.ClassName(label));
+        public static IWebElement GetElementByClassName(this IWebElement webElement, string label) {
+            var response = default(IWebElement);
+            try
+            {
+                response = webElement.FindElement(By.ClassName(label));
+            }
+            catch(Exception e)
+            {
+                return null;
+            }
+            return response;
+        }
         public static List<IWebElement> GetElementsListByClass(this IWebDriver webDriver, string label) => webDriver.FindElements(By.ClassName(label)).ToList();
 
-        public static string GetMonsterName(this IWebElement monsterElement) => monsterElement.FindElement(By.XPath(MONSTER_NAME_XPATH)).Text;
+        
     }
 }
