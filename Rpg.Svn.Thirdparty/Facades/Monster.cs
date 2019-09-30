@@ -19,7 +19,7 @@ namespace Rpg.Svn.Thirdparty.Facades
         public IEnumerable<string> Senses { get; set; }
         public IEnumerable<string> Languages { get; set; }
         public string ImgUrl { get; set; }
-        public IEnumerable<string> Challenge { get; set; }
+        public string Challenge { get; set; }
         public string Description { get; set; }
     }
 }
