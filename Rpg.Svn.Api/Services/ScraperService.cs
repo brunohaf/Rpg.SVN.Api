@@ -30,22 +30,7 @@ namespace Rpg.Svn.Api.Services
             Test();
         }
         public void Test()
-        {/*
-            var tibitElementList = _webDriver.GetTidbitList();
-            var dict = new Dictionary<string, string>();
-
-            foreach (var tidbitElement in tibitElementList)
-            {
-                var tidbit = tidbitElement.GetTidbitKeyAndValue();
-                dict.Add(tidbit.Key, tidbit.Value);
-            }
-            var image = _webDriver.FindElements(By.XPath("//div/a/img[@class='monster-image']")).FirstOrDefault();
-            dict.Add("imageUrl", image.GetAttribute("src"));
-            
-            var tost = dict;
-            */
-         //var monsterElement = _webDriver.FindElement(By.XPath("//div[@class='mon-stat-block']"));
-         //var monsterHeader = monsterElement.FindElement(By.XPath("//div/div[@class='mon-stat-block__header']"));
+        {
             var monsterElement = new MonsterFactory(_webDriver.FindElement(By.XPath("//div[@class='mon-stat-block']")));
             var monster = monsterElement.GenerateMonster();
             if (monster is null)

@@ -103,6 +103,7 @@ namespace Rpg.Svn.Thirdparty.Facades
                 HitDies = GetAttributeList("Hit Points", "attribute", Attributes).ElementAt(1),
                 HitPoints = GetAttributeList("Hit Points", "attribute", Attributes).FirstOrDefault(),
                 DamageImunities = GetAttributeList("Damage Immunities", "tidbit", Tidbits),
+                ConditionImunities = GetAttributeList("Condition Immunities", "tidbit", Tidbits),
                 Senses = GetAttributeList("Senses", "tidbit", Tidbits),
                 Languages = GetAttributeList("Languages", "tidbit", Tidbits),
                 Challenge = string.Join("", GetAttributeList("Challenge", "tidbit", Tidbits).ToArray()),
@@ -135,9 +136,17 @@ namespace Rpg.Svn.Thirdparty.Facades
         {
             GetBlockDict(component, element).TryGetValue(label, out var labelElement);
             char[] separators = { ',', ';' };
-            var elementsList = labelElement.Replace("and","").Split(separators).ToList();
-            elementsList.RemoveAll(s => s.Equals(""));
-            //elementsList.ForEach(s => s.Trim());
+            var elementsList = default(List<string>);
+            if (!string.IsNullOrEmpty(labelElement))
+            {
+                elementsList = labelElement.Replace("and", "").Split(separators).ToList();
+                elementsList.RemoveAll(s => string.IsNullOrEmpty(s));
+                for (int i = 0; i < elementsList.Count; i++)
+                {
+                    elementsList[i] = elementsList[i].Trim();
+                }
+            }
+            
             return elementsList;
         }
 
