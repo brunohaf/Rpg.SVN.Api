@@ -14,12 +14,14 @@ namespace Rpg.Svn.Api.Services
     public class MonsterService : IMonsterService
     {
         private readonly IOpen5eService _api;
+        private readonly IWebDriver _webDriver;
         private const int SPELL_FIRST_PAGE = 1;
         private const int SPELL_LAST_PAGE = 7;
 
-        public MonsterService(IOpen5eService apiOpen5e)
+        public MonsterService(IOpen5eService apiOpen5e, IWebDriver webDriver)
         {
             _api = apiOpen5e;
+            _webDriver = webDriver;
         }
         public async Task<IEnumerable<Monsterll>> GetMonsterListAsync()
         {
@@ -39,10 +41,19 @@ namespace Rpg.Svn.Api.Services
             }
         }
 
-        public async Task<Monsterll> GetMonsterbyNameAsync(string monsterName)
+        public async Task<Monster> GetMonsterbyNameAsync(string monsterName)
         {
-            var fullList = await GetMonsterListAsync();
-            return fullList.ToList().Where(s => s.NameIsMatch(monsterName)).FirstOrDefault();
+            //var fullList = await GetMonsterListAsync();
+            //return fullList.ToList().Where(s => s.NameIsMatch(monsterName)).FirstOrDefault();
+            _webDriver.Navigate().GoToUrl("https://www.dndbeyond.com/monsters/"+ ParseMonsterNameToSearchInput(monsterName));
+            var monsterElement = new MonsterFactory(_webDriver.FindElement(By.XPath("//div[@class='mon-stat-block']")));
+             return monsterElement.GenerateMonster();
+
+        }
+
+        private string ParseMonsterNameToSearchInput( string monsterName)
+        {
+            return monsterName.Replace(" ", "-").ToLower().Trim();
         }
     }
 }
