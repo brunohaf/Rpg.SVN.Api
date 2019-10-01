@@ -81,6 +81,7 @@ namespace Rpg.Svn.Api
                 var httpClient = clientBuilder.BuildLoggedClient<IOpen5eService>(settings.ThirdPartySettings.Open5eBaseUrl, logger);
                 return httpClient;
             });
+
             services.AddSingleton<IWebDriver>(webDriver =>
             {
                 var service = ChromeDriverService.CreateDefaultService(driverPath: AppDomain.CurrentDomain.BaseDirectory);
@@ -96,9 +97,9 @@ namespace Rpg.Svn.Api
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc(API_VERSION, new Info { Title = Constants.PROJECT_NAME, Version = API_VERSION });
-                var xmlFile = Assembly.GetExecutingAssembly().GetName().Name + Constants.XML_EXTENSION;
-                var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
-                c.IncludeXmlComments(xmlPath);
+                //var xmlFile = Assembly.GetExecutingAssembly().GetName().Name + Constants.XML_EXTENSION;
+                //var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
+                //c.IncludeXmlComments(xmlPath);
             });
         }
 
