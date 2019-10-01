@@ -7,6 +7,6 @@ namespace Rpg.Svn.Api.Interfaces
 {
     public interface IScraperService
     {
-        void Test(string login, string senha);
+    
     }
 }

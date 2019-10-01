@@ -16,6 +16,8 @@ using System.Reflection;
 using Rpg.Svn.Api.Services;
 using Rpg.Svn.Api.Interfaces;
 using Rpg.Svn.Thirdparty.Services;
+using OpenQA.Selenium.Chrome;
+using OpenQA.Selenium;
 
 namespace Rpg.Svn.Api
 {
@@ -78,8 +80,17 @@ namespace Rpg.Svn.Api
                 var clientBuilder = new RestingLogger.Builders.LoggedRestClientBuilder();
                 var httpClient = clientBuilder.BuildLoggedClient<IOpen5eService>(settings.ThirdPartySettings.Open5eBaseUrl, logger);
                 return httpClient;
-            }
-      );
+            });
+            services.AddSingleton<IWebDriver>(webDriver =>
+            {
+                var service = ChromeDriverService.CreateDefaultService(driverPath: AppDomain.CurrentDomain.BaseDirectory);
+                service.HideCommandPromptWindow = true;
+                var options = new ChromeOptions();
+                options.AddArguments("headless");
+                options.Proxy = null;
+                return new ChromeDriver(service, options);
+            });
+
 
             // Swagger
             services.AddSwaggerGen(c =>
