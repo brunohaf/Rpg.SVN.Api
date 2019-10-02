@@ -8,7 +8,7 @@ namespace Rpg.Svn.Api.Interfaces
 {
     public interface IMonsterService
     {
-        Task<Monster> GetMonsterbyNameAsync(string monsterName);
+        Monster GetMonsterbyName(string monsterName);
         Task<IEnumerable<string>> GetMonsterAspirantsAsync(string monsterName);
     }
 }

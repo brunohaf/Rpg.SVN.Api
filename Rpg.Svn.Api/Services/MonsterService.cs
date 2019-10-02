@@ -1,8 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Newtonsoft.Json;
 using OpenQA.Selenium;
 using RestEase;
 using Rpg.Svn.Api.Extensions;
@@ -34,7 +32,7 @@ namespace Rpg.Svn.Api.Services
                 _webDriver.GoToUrl(MONSTER_SEARCH_BASE_URL + monsterName + MONSTER_SEARCH_QUERY);
                 var searchElement = _webDriver.GetElementsListByXpath("//div/a[@class='link']").ToList();
                 var monsterList = new List<string>();
-                foreach(var element in searchElement)
+                foreach (var element in searchElement)
                 {
                     monsterList.Add(element.Text);
                 }
@@ -47,15 +45,18 @@ namespace Rpg.Svn.Api.Services
             }
         }
 
-        public async Task<Monster> GetMonsterbyNameAsync(string monsterName)
+        public Monster GetMonsterbyName(string monsterName)
         {
             _webDriver.GoToUrl(MONSTER_BASE_URL + ParseMonsterNameToSearchInput(monsterName));
+            if (_webDriver.GetElementByClassName("error-page error-page-404") != null)
+            {
+                return null;
+            }
             var monsterElement = new MonsterFactory(_webDriver.FindElement(By.XPath("//div[@class='mon-stat-block']")));
-             return monsterElement.GenerateMonster();
-
+            return monsterElement.GenerateMonster();
         }
 
-        private string ParseMonsterNameToSearchInput( string monsterName)
+        private string ParseMonsterNameToSearchInput(string monsterName)
         {
             return monsterName.Replace(" ", "-").ToLower().Trim();
         }
