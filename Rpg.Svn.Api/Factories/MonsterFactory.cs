@@ -1,13 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using OpenQA.Selenium;
 using Rpg.Svn.Api.Extensions;
+using Rpg.Svn.Api.Interfaces;
+using Rpg.Svn.Thirdparty.Models;
 
-namespace Rpg.Svn.Thirdparty.Facades
+namespace Rpg.Svn.Thirdparty.Factories
 {
-    class MonsterFactory
+    class MonsterFactory : IMonsterFactory
     {
         /// <summary>
         /// Receives the Header block of the monster's sheet.
@@ -72,28 +72,21 @@ namespace Rpg.Svn.Thirdparty.Facades
         private const string ACTIONS_CLASSNAME = "mon-stat-block__description-block-content";
         private const string IMAGE_XPATH = "//div/a/img[@class='monster-image']";
         private const string DESCRIPTION_CLASSNAME = "mon-stat-block__description-block-content";
+        private const string MONSTER_BASE_URL = "https://www.dndbeyond.com/monsters/";
+        private const string ERROR_CLASS_NAME = "//div[@class='error-page error-page-404']";
+        private const string MONSTER_MAIN_BLOCK_XPATH = "//div[@class='mon-stat-block']";
 
-        public MonsterFactory(IWebElement monsterBlock)
+        private readonly IWebDriver _webDriver;
+
+        public MonsterFactory(IWebDriver webDriver)
         {
-            Header = monsterBlock.GetElementByClassName(HEADER_CLASSNAME);
-            Attributes = monsterBlock.GetElementsListByXpath(ATTRIBUTES_XPATH);
-            Abilities = monsterBlock.GetElementByClassName(ABILITIES_CLASSNAME);
-            Tidbits = monsterBlock.GetElementsListByClass(TIDBITS_CLASSNAME);
-            Actions = monsterBlock.GetElementByClassName(ACTIONS_CLASSNAME);
-            Image = monsterBlock.GetElementByXpath(IMAGE_XPATH);
-            Description = monsterBlock.GetElementByClassName(DESCRIPTION_CLASSNAME);
-
-            //Header = monsterBlock.FindElement(By.ClassName("mon-stat-block__header"));
-            //Attributes = monsterBlock.FindElements(By.XPath("//div/div[@class='mon-stat-block__attribute']")).ToList();
-            //Abilities = monsterBlock.FindElement(By.ClassName("ability-block"));
-            //Tidbits = monsterBlock.FindElements(By.ClassName("mon-stat-block__tidbit")).ToList();
-            //Actions = monsterBlock.FindElement(By.ClassName("mon-stat-block__description-block-content"));
-            //Image = monsterBlock.FindElement(By.XPath("//div/a/img[@class='monster-image']"));
-            //Description = monsterBlock.FindElement(By.ClassName("mon-stat-block__description-block-content"));
+            _webDriver = webDriver;
         }
 
-        public Monster GenerateMonster()
+        public Monster GenerateMonster(string monsterName)
         {
+            InitManufature(monsterName);
+
             var monster = new Monster()
             {
                 Name = GetMonsterName(Header),
@@ -146,7 +139,7 @@ namespace Rpg.Svn.Thirdparty.Facades
                     elementsList[i] = elementsList[i].Trim();
                 }
             }
-            
+
             return elementsList;
         }
 
@@ -165,7 +158,35 @@ namespace Rpg.Svn.Thirdparty.Facades
                 atrib.RemoveAll(s => string.IsNullOrEmpty(s));
                 attribute.Add(atrib[0], atrib[1]);
             }
+
             return attribute;
+        }
+        private string ParseMonsterNameToSearchInput(string monsterName)
+        {
+            return monsterName.Replace(" ", "-").ToLower().Trim();
+        }
+        private IWebElement GetMonsterElement(string monsterName)
+        {
+            _webDriver.GoToUrl(MONSTER_BASE_URL + ParseMonsterNameToSearchInput(monsterName));
+
+            if (_webDriver.GetElementByXpath(ERROR_CLASS_NAME) != null)
+            {
+                return null;
+            }
+
+            return _webDriver.GetElementByXpath(MONSTER_MAIN_BLOCK_XPATH);
+        }
+
+        private void InitManufature(string monsterName)
+        {
+            var monsterBlock = GetMonsterElement(monsterName);
+            Header = monsterBlock.GetElementByClassName(HEADER_CLASSNAME);
+            Attributes = monsterBlock.GetElementsListByXpath(ATTRIBUTES_XPATH);
+            Abilities = monsterBlock.GetElementByClassName(ABILITIES_CLASSNAME);
+            Tidbits = monsterBlock.GetElementsListByClass(TIDBITS_CLASSNAME);
+            Actions = monsterBlock.GetElementByClassName(ACTIONS_CLASSNAME);
+            Image = monsterBlock.GetElementByXpath(IMAGE_XPATH);
+            Description = monsterBlock.GetElementByClassName(DESCRIPTION_CLASSNAME);
         }
         private string GetMonsterName(IWebElement monsterElement) => monsterElement.FindElement(By.ClassName("mon-stat-block__name-link")).Text;
         private IEnumerable<string> GetMonsterHeaderList(IWebElement monsterElement) => monsterElement.FindElement(By.ClassName("mon-stat-block__meta")).Text.Split(",").ToList();
