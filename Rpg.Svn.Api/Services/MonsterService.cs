@@ -25,18 +25,18 @@ namespace Rpg.Svn.Api.Services
             _api = apiOpen5e;
             _webDriver = webDriver;
         }
-        public async Task<IEnumerable<string>> GetMonsterAspirantsAsync(string monsterName)
+        public async Task<Dictionary<int, string>> GetMonsterAspirantsAsync(string monsterName)
         {
             try
             {
                 _webDriver.GoToUrl(MONSTER_SEARCH_BASE_URL + monsterName + MONSTER_SEARCH_QUERY);
                 var searchElement = _webDriver.GetElementsListByXpath("//div/a[@class='link']").ToList();
-                var monsterList = new List<string>();
+                var monsterList = new Dictionary<int, string>();
                 foreach (var element in searchElement)
-                {
-                    monsterList.Add(element.Text);
-                }
-                monsterList.RemoveAll(m => string.IsNullOrEmpty(m));
+                    if (!string.IsNullOrEmpty(element.Text))
+                    {
+                        monsterList.Add(searchElement.IndexOf(element), element.Text);
+                    }
                 return monsterList;
             }
             catch (ApiException e)
@@ -48,7 +48,7 @@ namespace Rpg.Svn.Api.Services
         public Monster GetMonsterbyName(string monsterName)
         {
             _webDriver.GoToUrl(MONSTER_BASE_URL + ParseMonsterNameToSearchInput(monsterName));
-            if (_webDriver.GetElementByClassName("error-page error-page-404") != null)
+            if (_webDriver.GetElementByXpath("//div[@class='error-page error-page-404']") != null)
             {
                 return null;
             }
