@@ -17,9 +17,15 @@ namespace Rpg.Svn.Api.Controllers
         }
 
         [HttpGet("MonsterByName/")]
-        public async Task<IActionResult> GetSpellAsync([FromHeader] string monsterName)
+        public async Task<IActionResult> GetMonsterAsync([FromHeader] string monsterName)
         {
             return Ok(await _monsterService.GetMonsterbyNameAsync(monsterName));
+        }
+
+        [HttpGet("GetMonsterAspirants/")]
+        public async Task<IActionResult> GetMonsterAspirantListAsync([FromHeader] string monsterName)
+        {
+            return Ok(await _monsterService.GetMonsterAspirantsAsync(monsterName));
         }
     }
 }

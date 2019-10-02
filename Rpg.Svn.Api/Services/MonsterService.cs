@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Newtonsoft.Json;
 using OpenQA.Selenium;
 using RestEase;
+using Rpg.Svn.Api.Extensions;
 using Rpg.Svn.Api.Interfaces;
 using Rpg.Svn.Thirdparty.Facades;
 using Rpg.Svn.Thirdparty.Services;
@@ -17,23 +18,28 @@ namespace Rpg.Svn.Api.Services
         private readonly IWebDriver _webDriver;
         private const int SPELL_FIRST_PAGE = 1;
         private const int SPELL_LAST_PAGE = 7;
+        private const string MONSTER_BASE_URL = "https://www.dndbeyond.com/monsters/";
+        private const string MONSTER_SEARCH_BASE_URL = "https://www.dndbeyond.com/search?q=";
+        private const string MONSTER_SEARCH_QUERY = "&f=monsters&c=monsters";
 
         public MonsterService(IOpen5eService apiOpen5e, IWebDriver webDriver)
         {
             _api = apiOpen5e;
             _webDriver = webDriver;
         }
-        public async Task<IEnumerable<Monsterll>> GetMonsterListAsync()
+        public async Task<IEnumerable<string>> GetMonsterAspirantsAsync(string monsterName)
         {
             try
             {
-                var fullMonsterList = new List<Monsterll>();
-                foreach (var page in Enumerable.Range(SPELL_FIRST_PAGE, SPELL_LAST_PAGE).ToList())
+                _webDriver.GoToUrl(MONSTER_SEARCH_BASE_URL + monsterName + MONSTER_SEARCH_QUERY);
+                var searchElement = _webDriver.GetElementsListByXpath("//div/a[@class='link']").ToList();
+                var monsterList = new List<string>();
+                foreach(var element in searchElement)
                 {
-                    var pagedMonsterList = await _api.GetMonstersAsync(page);
-                    fullMonsterList = fullMonsterList.Concat(pagedMonsterList.MonsterList).ToList();
+                    monsterList.Add(element.Text);
                 }
-                return fullMonsterList;
+                monsterList.RemoveAll(m => string.IsNullOrEmpty(m));
+                return monsterList;
             }
             catch (ApiException e)
             {
@@ -43,9 +49,7 @@ namespace Rpg.Svn.Api.Services
 
         public async Task<Monster> GetMonsterbyNameAsync(string monsterName)
         {
-            //var fullList = await GetMonsterListAsync();
-            //return fullList.ToList().Where(s => s.NameIsMatch(monsterName)).FirstOrDefault();
-            _webDriver.Navigate().GoToUrl("https://www.dndbeyond.com/monsters/"+ ParseMonsterNameToSearchInput(monsterName));
+            _webDriver.GoToUrl(MONSTER_BASE_URL + ParseMonsterNameToSearchInput(monsterName));
             var monsterElement = new MonsterFactory(_webDriver.FindElement(By.XPath("//div[@class='mon-stat-block']")));
              return monsterElement.GenerateMonster();
 

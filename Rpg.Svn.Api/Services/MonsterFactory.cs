@@ -162,7 +162,7 @@ namespace Rpg.Svn.Thirdparty.Facades
             foreach (var att in attList)
             {
                 var atrib = att.Split(" ").ToList();
-                atrib.RemoveAll(s => s.Equals(""));
+                atrib.RemoveAll(s => string.IsNullOrEmpty(s));
                 attribute.Add(atrib[0], atrib[1]);
             }
             return attribute;
