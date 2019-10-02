@@ -75,6 +75,9 @@ namespace Rpg.Svn.Thirdparty.Factories
         private const string MONSTER_BASE_URL = "https://www.dndbeyond.com/monsters/";
         private const string ERROR_CLASS_NAME = "//div[@class='error-page error-page-404']";
         private const string MONSTER_MAIN_BLOCK_XPATH = "//div[@class='mon-stat-block']";
+        private const string MONSTER_NAME_LINK = "mon-stat-block__name-link";
+        private const string META_STAT_CLASSNAME = "mon-stat-block__meta";
+        private const string MONSTER_STAT_BLOCK_PRIOR_CLASSNAME = "mon-stat-block__";
 
         private readonly IWebDriver _webDriver;
 
@@ -114,15 +117,20 @@ namespace Rpg.Svn.Thirdparty.Factories
             var dict = new Dictionary<string, string>();
             foreach (var element in elements)
             {
-                var component = new KeyValuePair<string, string>(element.GetElementByClassName("mon-stat-block__" + label + "-label").Text,
-                                                              (label.Equals("attribute") ? element.GetElementByClassName("mon-stat-block__" + label + "-data-value").Text + ", " +
-                                                              (element.GetElementByClassName("mon-stat-block__" + label + "-data-extra") is null ? "" :
-                                                              element.GetElementByClassName("mon-stat-block__" + label + "-data-extra").Text) :
-                                                              element.GetElementByClassName("mon-stat-block__" + label + "-data").Text));
+                var component = new KeyValuePair<string, string>(BuildElementContextByClassName(element, label, "-label").Text,
+                                                              (label.Equals("attribute") ? BuildElementContextByClassName(element, label, "-data-value").Text + ", " +
+                                                              (BuildElementContextByClassName(element, label, "-data-extra") is null ? "" :
+                                                              BuildElementContextByClassName(element, label, "-data-extra").Text) :
+                                                              BuildElementContextByClassName(element, label, "-data").Text));
                 dict.Add(component.Key, component.Value);
             }
 
             return dict;
+        }
+
+        private IWebElement BuildElementContextByClassName(IWebElement element, string label, string context)
+        {
+            return element.GetElementByClassName(MONSTER_STAT_BLOCK_PRIOR_CLASSNAME + label + context);
         }
 
         private IEnumerable<string> GetAttributeList(string label, string component, List<IWebElement> element)
@@ -188,11 +196,11 @@ namespace Rpg.Svn.Thirdparty.Factories
             Image = monsterBlock.GetElementByXpath(IMAGE_XPATH);
             Description = monsterBlock.GetElementByClassName(DESCRIPTION_CLASSNAME);
         }
-        private string GetMonsterName(IWebElement monsterElement) => monsterElement.FindElement(By.ClassName("mon-stat-block__name-link")).Text;
-        private IEnumerable<string> GetMonsterHeaderList(IWebElement monsterElement) => monsterElement.FindElement(By.ClassName("mon-stat-block__meta")).Text.Split(",").ToList();
+        private string GetMonsterName(IWebElement monsterElement) => monsterElement.GetElementByClassName(MONSTER_NAME_LINK).Text;
+        private IEnumerable<string> GetMonsterHeaderList(IWebElement monsterElement) => monsterElement.GetElementByClassName(META_STAT_CLASSNAME).Text.Split(",").ToList();
         private string GetMonsterAlignment() => GetMonsterHeaderList(Header).ElementAt(1);
-        private string GetMonsterType() => GetMonsterHeaderList(Header).ElementAt(0).Split(" ").ElementAt(1);
-        private string GetMonsterSize() => GetMonsterHeaderList(Header).ElementAt(0).Split(" ").ElementAt(0);
+        private string GetMonsterType() => GetMonsterHeaderList(Header).FirstOrDefault().Split(" ").ElementAt(1);
+        private string GetMonsterSize() => GetMonsterHeaderList(Header).FirstOrDefault().Split(" ").FirstOrDefault();
     }
 }
 
