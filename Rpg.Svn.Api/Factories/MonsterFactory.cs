@@ -112,25 +112,27 @@ namespace Rpg.Svn.Thirdparty.Factories
             return monster;
         }
 
-        private Dictionary<string, string> GetBlockDict(string label, List<IWebElement> elements)
+        private Dictionary<string, string> GetBlockDict(string fieldIdentifier, List<IWebElement> elements)
         {
             var dict = new Dictionary<string, string>();
             foreach (var element in elements)
             {
-                var component = new KeyValuePair<string, string>(BuildElementContextByClassName(element, label, "-label").Text,
-                                                              (label.Equals("attribute") ? BuildElementContextByClassName(element, label, "-data-value").Text + ", " +
-                                                              (BuildElementContextByClassName(element, label, "-data-extra") is null ? "" :
-                                                              BuildElementContextByClassName(element, label, "-data-extra").Text) :
-                                                              BuildElementContextByClassName(element, label, "-data").Text));
+                var component = new KeyValuePair<string, string>(BuildElementFromContextByClassName(element, fieldIdentifier, "-label").Text,
+                                                                (fieldIdentifier.Equals("attribute") ?
+                                                                 BuildElementFromContextByClassName(element, fieldIdentifier, "-data-value").Text + ", " +
+                                                                (BuildElementFromContextByClassName(element, fieldIdentifier, "-data-extra") is null ?
+                                                                "" :
+                                                                BuildElementFromContextByClassName(element, fieldIdentifier, "-data-extra").Text) :
+                                                                BuildElementFromContextByClassName(element, fieldIdentifier, "-data").Text));
                 dict.Add(component.Key, component.Value);
             }
 
             return dict;
         }
 
-        private IWebElement BuildElementContextByClassName(IWebElement element, string label, string context)
+        private IWebElement BuildElementFromContextByClassName(IWebElement element, string fieldIdentifier, string context)
         {
-            return element.GetElementByClassName(MONSTER_STAT_BLOCK_PRIOR_CLASSNAME + label + context);
+            return element.GetElementByClassName(MONSTER_STAT_BLOCK_PRIOR_CLASSNAME + fieldIdentifier + context);
         }
 
         private IEnumerable<string> GetAttributeList(string label, string component, List<IWebElement> element)
