@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace Rpg.Svn.Thirdparty.Facades
+namespace Rpg.Svn.Thirdparty.Models
 {
     public class Monster
     {

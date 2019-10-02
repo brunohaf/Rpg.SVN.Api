@@ -1,23 +1,21 @@
-﻿using Rpg.Svn.Api.Middleware;
-using Rpg.Svn.Api.Models;
+﻿using System;
 using Blip.HttpClient.Extensions;
 using Lime.Protocol.Serialization.Newtonsoft;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Newtonsoft;
+using OpenQA.Selenium;
+using OpenQA.Selenium.Chrome;
+using Rpg.Svn.Api.Interfaces;
+using Rpg.Svn.Api.Middleware;
+using Rpg.Svn.Api.Models;
+using Rpg.Svn.Api.Services;
+using Rpg.Svn.Thirdparty.Factories;
+using Rpg.Svn.Thirdparty.Services;
 using Serilog;
 using Serilog.Exceptions;
 using Swashbuckle.AspNetCore.Swagger;
-using System;
-using System.IO;
-using System.Reflection;
-using Rpg.Svn.Api.Services;
-using Rpg.Svn.Api.Interfaces;
-using Rpg.Svn.Thirdparty.Services;
-using OpenQA.Selenium.Chrome;
-using OpenQA.Selenium;
 
 namespace Rpg.Svn.Api
 {
@@ -73,6 +71,7 @@ namespace Rpg.Svn.Api
             services.AddSingleton<IPartyService, PartyService>();
             services.AddSingleton<ISpellService, SpellService>();
             services.AddSingleton<IMonsterService, MonsterService>();
+            services.AddSingleton<IMonsterFactory, MonsterFactory>();
             services.AddSingleton<IOpen5eService>(provider =>
             {
                 var logger = provider.GetService<ILogger>();

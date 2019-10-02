@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System.Net;
+using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Rpg.Svn.Api.Interfaces;
 
@@ -17,9 +18,21 @@ namespace Rpg.Svn.Api.Controllers
         }
 
         [HttpGet("MonsterByName/")]
-        public async Task<IActionResult> GetSpellAsync([FromHeader] string monsterName)
+        public async Task<IActionResult> GetMonsterAsync([FromHeader] string monsterName)
         {
-            return Ok(await _monsterService.GetMonsterbyNameAsync(monsterName));
+            var monster = _monsterService.GetMonsterbyName(monsterName);
+            if(monster is null)
+            {
+                return NotFound();
+            }
+
+            return Ok((monster));
+        }
+
+        [HttpGet("GetMonsterAspirants/")]
+        public async Task<IActionResult> GetMonsterAspirantListAsync([FromHeader] string monsterName)
+        {
+            return Ok(await _monsterService.GetMonsterAspirantsAsync(monsterName));
         }
     }
 }

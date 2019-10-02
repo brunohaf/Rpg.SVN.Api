@@ -27,7 +27,35 @@ namespace Rpg.Svn.Api.Extensions
             return response;
         }
 
+        public static IWebElement GetElementByClassName(this IWebDriver webElement, string label)
+        {
+            var response = default(IWebElement);
+            try
+            {
+                response = webElement.FindElement(By.ClassName(label));
+            }
+            catch (Exception e)
+            {
+                return null;
+            }
+            return response;
+        }
+
         public static IWebElement GetElementByXpath(this IWebElement webElement, string label)
+        {
+            var response = default(IWebElement);
+            try
+            {
+                response = webElement.FindElement(By.XPath(label));
+            }
+            catch (Exception e)
+            {
+                return null;
+            }
+            return response;
+        }
+
+        public static IWebElement GetElementByXpath(this IWebDriver webElement, string label)
         {
             var response = default(IWebElement);
             try
@@ -44,6 +72,8 @@ namespace Rpg.Svn.Api.Extensions
         public static List<IWebElement> GetElementsListByClass(this IWebDriver webDriver, string label) => webDriver.FindElements(By.ClassName(label)).ToList();
         public static List<IWebElement> GetElementsListByClass(this IWebElement webElement, string label) => webElement.FindElements(By.ClassName(label)).ToList();
         public static List<IWebElement> GetElementsListByXpath(this IWebElement webDriver, string label) => webDriver.FindElements(By.XPath(label)).ToList();
+        public static List<IWebElement> GetElementsListByXpath(this IWebDriver webDriver, string label) => webDriver.FindElements(By.XPath(label)).ToList();
+        public static void GoToUrl(this IWebDriver webDriver, string path) => webDriver.Navigate().GoToUrl(path);
 
     }
 }

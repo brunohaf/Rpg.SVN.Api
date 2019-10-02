@@ -1,12 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Newtonsoft.Json;
 using OpenQA.Selenium;
 using RestEase;
+using Rpg.Svn.Api.Extensions;
 using Rpg.Svn.Api.Interfaces;
-using Rpg.Svn.Thirdparty.Facades;
+using Rpg.Svn.Thirdparty.Models;
 using Rpg.Svn.Thirdparty.Services;
 
 namespace Rpg.Svn.Api.Services
@@ -17,23 +16,29 @@ namespace Rpg.Svn.Api.Services
         private readonly IWebDriver _webDriver;
         private const int SPELL_FIRST_PAGE = 1;
         private const int SPELL_LAST_PAGE = 7;
+        private const string MONSTER_SEARCH_BASE_URL = "https://www.dndbeyond.com/search?q=";
+        private readonly IMonsterFactory _monsterFactory;
+        private const string MONSTER_SEARCH_QUERY = "&f=monsters&c=monsters";
 
-        public MonsterService(IOpen5eService apiOpen5e, IWebDriver webDriver)
+        public MonsterService(IOpen5eService apiOpen5e, IWebDriver webDriver, IMonsterFactory monsterFactory)
         {
+            _monsterFactory = monsterFactory;
             _api = apiOpen5e;
             _webDriver = webDriver;
         }
-        public async Task<IEnumerable<Monsterll>> GetMonsterListAsync()
+        public async Task<Dictionary<int, string>> GetMonsterAspirantsAsync(string monsterName)
         {
             try
             {
-                var fullMonsterList = new List<Monsterll>();
-                foreach (var page in Enumerable.Range(SPELL_FIRST_PAGE, SPELL_LAST_PAGE).ToList())
-                {
-                    var pagedMonsterList = await _api.GetMonstersAsync(page);
-                    fullMonsterList = fullMonsterList.Concat(pagedMonsterList.MonsterList).ToList();
-                }
-                return fullMonsterList;
+                _webDriver.GoToUrl(MONSTER_SEARCH_BASE_URL + monsterName + MONSTER_SEARCH_QUERY);
+                var searchElement = _webDriver.GetElementsListByXpath("//div/a[@class='link']").ToList();
+                var monsterList = new Dictionary<int, string>();
+                foreach (var element in searchElement)
+                    if (!string.IsNullOrEmpty(element.Text))
+                    {
+                        monsterList.Add(searchElement.IndexOf(element), element.Text);
+                    }
+                return monsterList;
             }
             catch (ApiException e)
             {
@@ -41,19 +46,11 @@ namespace Rpg.Svn.Api.Services
             }
         }
 
-        public async Task<Monster> GetMonsterbyNameAsync(string monsterName)
+        public Monster GetMonsterbyName(string monsterName)
         {
-            //var fullList = await GetMonsterListAsync();
-            //return fullList.ToList().Where(s => s.NameIsMatch(monsterName)).FirstOrDefault();
-            _webDriver.Navigate().GoToUrl("https://www.dndbeyond.com/monsters/"+ ParseMonsterNameToSearchInput(monsterName));
-            var monsterElement = new MonsterFactory(_webDriver.FindElement(By.XPath("//div[@class='mon-stat-block']")));
-             return monsterElement.GenerateMonster();
-
+            return _monsterFactory.GenerateMonster(monsterName);
         }
 
-        private string ParseMonsterNameToSearchInput( string monsterName)
-        {
-            return monsterName.Replace(" ", "-").ToLower().Trim();
-        }
+
     }
 }
