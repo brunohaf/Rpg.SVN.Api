@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using OpenQA.Selenium;
 using Rpg.Svn.Api.Extensions;
@@ -88,28 +89,34 @@ namespace Rpg.Svn.Thirdparty.Factories
 
         public Monster GenerateMonster(string monsterName)
         {
-            InitManufature(monsterName);
-
-            var monster = new Monster()
+            try
             {
-                Name = GetMonsterName(Header),
-                SavingThrows = GetAttributeDictionary("Saving Throws", "tidbit", Tidbits),
-                Skills = GetAttributeDictionary("Skills", "tidbit", Tidbits),
-                ArmorClass = string.Join("", GetAttributeList("Armor Class", "attribute", Attributes).ToArray()),
-                HitDies = GetAttributeList("Hit Points", "attribute", Attributes).ElementAt(1),
-                HitPoints = GetAttributeList("Hit Points", "attribute", Attributes).FirstOrDefault(),
-                DamageImunities = GetAttributeList("Damage Immunities", "tidbit", Tidbits),
-                ConditionImunities = GetAttributeList("Condition Immunities", "tidbit", Tidbits),
-                Senses = GetAttributeList("Senses", "tidbit", Tidbits),
-                Languages = GetAttributeList("Languages", "tidbit", Tidbits),
-                Challenge = string.Join("", GetAttributeList("Challenge", "tidbit", Tidbits).ToArray()),
-                Alignment = GetMonsterAlignment(),
-                Size = GetMonsterSize(),
-                Type = GetMonsterType(),
-                ImgUrl = Image.GetAttribute("src")
-            };
+                InitManufature(monsterName);
 
-            return monster;
+                var monster = new Monster()
+                {
+                    Name = GetMonsterName(Header),
+                    SavingThrows = GetAttributeDictionary("Saving Throws", "tidbit", Tidbits),
+                    Skills = GetAttributeDictionary("Skills", "tidbit", Tidbits),
+                    ArmorClass = string.Join("", GetAttributeList("Armor Class", "attribute", Attributes).ToArray()),
+                    HitDies = GetAttributeList("Hit Points", "attribute", Attributes).ElementAt(1),
+                    HitPoints = GetAttributeList("Hit Points", "attribute", Attributes).FirstOrDefault(),
+                    DamageImunities = GetAttributeList("Damage Immunities", "tidbit", Tidbits),
+                    ConditionImunities = GetAttributeList("Condition Immunities", "tidbit", Tidbits),
+                    Senses = GetAttributeList("Senses", "tidbit", Tidbits),
+                    Languages = GetAttributeList("Languages", "tidbit", Tidbits),
+                    Challenge = string.Join("", GetAttributeList("Challenge", "tidbit", Tidbits).ToArray()),
+                    Alignment = GetMonsterAlignment(),
+                    Size = GetMonsterSize(),
+                    Type = GetMonsterType(),
+                    ImgUrl = Image.GetAttribute("src")
+                };
+                return monster;
+            }
+            catch (Exception e)
+            {
+                return null;
+            }
         }
 
         private Dictionary<string, string> GetBlockDict(string fieldIdentifier, List<IWebElement> elements)
