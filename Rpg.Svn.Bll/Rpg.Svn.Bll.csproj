@@ -1,0 +1,12 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Rpg.Svn.Core\Rpg.Svn.Core.csproj" />
+    <ProjectReference Include="..\Rpg.Svn.Repository\Rpg.Svn.Repository.csproj" />
+  </ItemGroup>
+
+</Project>

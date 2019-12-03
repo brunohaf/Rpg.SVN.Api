@@ -11,6 +11,7 @@ using Rpg.Svn.Api.Interfaces;
 using Rpg.Svn.Api.Middleware;
 using Rpg.Svn.Api.Models;
 using Rpg.Svn.Api.Services;
+using Rpg.Svn.Core.Contracts;
 using Rpg.Svn.Thirdparty.Factories;
 using Rpg.Svn.Thirdparty.Services;
 using Serilog;
@@ -39,15 +40,6 @@ namespace Rpg.Svn.Api
             // Parsing appsettings into class
             var settings = Configuration.GetSection(SETTINGS_SECTION).Get<MySettings>();
 
-            // Adds BLiP's Json Serializer to use on BLiP's Builder
-            services.AddMvc().AddJsonOptions(options =>
-            {
-                foreach (var settingsConverter in JsonNetSerializer.Settings.Converters)
-                {
-                    options.SerializerSettings.Converters.Add(settingsConverter);
-                }
-            });
-
             // Dependency injection
             services.AddSingleton(settings);
             services.AddSingleton(settings.BlipBotSettings);
@@ -72,6 +64,7 @@ namespace Rpg.Svn.Api
             services.AddSingleton<ISpellService, SpellService>();
             services.AddSingleton<IMonsterService, MonsterService>();
             services.AddSingleton<IMonsterFactory, MonsterFactory>();
+            services.AddSingleton<IDbSpellService, DbSpellService>();
             services.AddSingleton<IOpen5eService>(provider =>
             {
                 var logger = provider.GetService<ILogger>();
@@ -86,6 +79,7 @@ namespace Rpg.Svn.Api
                 var service = ChromeDriverService.CreateDefaultService(driverPath: AppDomain.CurrentDomain.BaseDirectory);
                 service.HideCommandPromptWindow = true;
                 var options = new ChromeOptions();
+                options.AddArgument("--user-agent=Mozilla/5.0 (iPad; CPU OS 6_0 like Mac OS X) AppleWebKit/536.26 (KHTML, like Gecko) Version/6.0 Mobile/10A5355d Safari/8536.25");
                 options.AddArguments("headless");
                 options.Proxy = null;
                 return new ChromeDriver(service, options);

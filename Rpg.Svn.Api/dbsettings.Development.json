@@ -1,0 +1,5 @@
+{
+  "ConnectionStrings": {
+    "SvnContext": "Server=(localdb)\\mssqllocaldb;Database=Subversion;Trusted_Connection=True;"
+  }
+}
