@@ -86,7 +86,7 @@ namespace Rpg.Svn.Api
                 var service = ChromeDriverService.CreateDefaultService(driverPath: AppDomain.CurrentDomain.BaseDirectory);
                 service.HideCommandPromptWindow = true;
                 var options = new ChromeOptions();
-                options.AddArguments("headless");
+                //options.AddArguments("headless");
                 options.Proxy = null;
                 return new ChromeDriver(service, options);
             });
