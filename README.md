@@ -1,4 +1,7 @@
 ﻿# Guidelines on what to do:
+
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/3f56375e52134abc8024ca7c2cacaa67)](https://app.codacy.com/manual/brunohaf/Rpg.SVN.Api?utm_source=github.com&utm_medium=referral&utm_content=brunohaf/Rpg.SVN.Api&utm_campaign=Badge_Grade_Dashboard)
+
  1. Get main char's data to populate partyinfo.json.
  2. Create attribs for CharacterInfo.(Name,gender,*LEVEL*(lv up endpoint),alignment, rumours, war fame)
  3. Create SVN smalltalks utilities (SVNRPG SmallTalks).
